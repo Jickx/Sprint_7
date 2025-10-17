@@ -1,7 +1,7 @@
 # Sprint_7 — Тестирование API учебного сервиса Яндекс Самокат
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue)]()
-[![pytest](https://img.shields.io/badge/pytest-7.x-green)]()
+[![pytest](https://img.shields.io/badge/pytest-8.x-green)]()
 [![requests](https://img.shields.io/badge/requests-2.x-orange)]()
 [![allure](https://img.shields.io/badge/allure-reporting-purple)]()
 
