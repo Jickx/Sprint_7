@@ -112,13 +112,13 @@ pytest -s -v
 ### 1. Запустить тесты с генерацией отчёта
 
 ```bash
-pytest --alluredir=allure_results
+pytest --alluredir=allure-results
 ```
 
 ### 2. Сформировать и открыть отчёт
 
 ```bash
-allure serve allure_results
+allure serve allure-results
 ```
 
 ---
