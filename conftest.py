@@ -24,3 +24,15 @@ def courier_creds():
         'firstName': courier_data.get('firstName')  # firstName не обязателен
     }
     return credentials
+
+
+@pytest.fixture
+def created_courier():
+    """Фикстура для создания и последующего удаления курьера (для тестов авторизации)"""
+    courier_data = CourierGenerator.random_courier()
+    CourierHelper.create_courier(courier_data)
+
+    yield courier_data
+
+    CourierHelper.delete_courier(courier_data)
+
