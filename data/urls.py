@@ -10,3 +10,4 @@ class CourierUrls:
 
 class OrderUrls:
     CREATE_ORDER = f"{BaseUrls.BASE_URL}/api/v1/orders"
+    GET_ORDERS = f"{BaseUrls.BASE_URL}/api/v1/orders"
