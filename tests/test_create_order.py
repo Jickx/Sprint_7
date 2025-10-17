@@ -33,3 +33,7 @@ class TestCreateOrder:
             body = response.json()
             assert 'track' in body, "В ответе отсутствует поле 'track'"
             assert isinstance(body['track'], int), "Поле 'track' должно быть числом"
+            track_number = body['track']
+
+        with allure.step(f'Отменить заказ (track={track_number})'):
+            OrderHelper.cancel_order(track_number)

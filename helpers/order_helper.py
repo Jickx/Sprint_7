@@ -16,3 +16,9 @@ class OrderHelper:
     def get_orders():
         with allure.step('GET /api/v1/orders'):
             return requests.get(OrderUrls.GET_ORDERS)
+
+    @staticmethod
+    @allure.step('Отмена заказа')
+    def cancel_order(track):
+        with allure.step(f'PUT /api/v1/orders/cancel (track={track})'):
+            return requests.put(OrderUrls.CANCEL_ORDER, json={'track': track})

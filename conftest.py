@@ -1,7 +1,9 @@
 import pytest
 import allure
 from helpers.courier_helper import CourierHelper
+from helpers.order_helper import OrderHelper
 from data.courier_generator import CourierGenerator
+from data.order_generator import OrderGenerator
 
 
 @pytest.fixture
@@ -43,3 +45,23 @@ def created_courier():
 
     with allure.step('Удалить курьера после теста авторизации'):
         CourierHelper.delete_courier(courier_data)
+
+
+@pytest.fixture
+def created_order():
+    """Фикстура для создания заказа с автоматической отменой"""
+    track_number = None
+
+    with allure.step('Генерировать данные заказа'):
+        order_data = OrderGenerator.random_order()
+
+    with allure.step('Создать заказ'):
+        response = OrderHelper.create_order(order_data)
+        if response.status_code == 201:
+            track_number = response.json().get('track')
+
+    yield {'order_data': order_data, 'track': track_number}
+
+    if track_number:
+        with allure.step(f'Отменить заказ (track={track_number})'):
+            OrderHelper.cancel_order(track_number)
