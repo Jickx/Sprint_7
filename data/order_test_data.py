@@ -1,0 +1,6 @@
+
+FIELD_TRACK = 'track'
+FIELD_ORDERS = 'orders'
+
+STATUS_CREATED = 201
+STATUS_OK = 200

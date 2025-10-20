@@ -1,5 +1,6 @@
 import allure
 from helpers.order_helper import OrderHelper
+from data.order_test_data import FIELD_ORDERS, STATUS_OK
 
 
 @allure.feature('Получение списка заказов')
@@ -13,9 +14,9 @@ class TestGetOrders:
             response = OrderHelper.get_orders()
 
         with allure.step('Проверить код ответа 200'):
-            assert response.status_code == 200, f"Ожидался код 200, получен {response.status_code}"
+            assert response.status_code == STATUS_OK, f"Ожидался код {STATUS_OK}, получен {response.status_code}"
 
         with allure.step('Проверить, что поле orders присутствует и это список'):
             response_data = response.json()
-            assert 'orders' in response_data, "В ответе отсутствует поле 'orders'"
-            assert isinstance(response_data['orders'], list), "Поле 'orders' должно быть списком"
+            assert FIELD_ORDERS in response_data, f"В ответе отсутствует поле '{FIELD_ORDERS}'"
+            assert isinstance(response_data[FIELD_ORDERS], list), f"Поле '{FIELD_ORDERS}' должно быть списком"

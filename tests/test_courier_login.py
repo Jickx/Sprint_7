@@ -4,6 +4,7 @@ from http import HTTPStatus
 from helpers.courier_helper import CourierHelper
 from data.courier_generator import CourierGenerator
 from data.messages import ACCOUNT_NOT_FOUND_MESSAGE, INSUFFICIENT_LOGIN_DATA_MESSAGE
+from data.test_data import WRONG_PASSWORD, WRONG_LOGIN
 
 
 @allure.feature('Авторизация курьера')
@@ -72,7 +73,7 @@ class TestCourierLogin:
         with allure.step('Подготовить данные с неверным паролем'):
             credentials = {
                 'login': created_courier['login'],
-                'password': 'wrong_password_123'
+                'password': WRONG_PASSWORD
             }
 
         with allure.step('Отправить запрос на авторизацию'):
@@ -88,7 +89,7 @@ class TestCourierLogin:
         """Система вернёт ошибку, если неправильно указать логин"""
         with allure.step('Подготовить данные с неверным логином'):
             credentials = {
-                'login': 'wrong_user_12345',
+                'login': WRONG_LOGIN,
                 'password': created_courier['password']
             }
 
