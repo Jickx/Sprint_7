@@ -4,6 +4,7 @@ from helpers.courier_helper import CourierHelper
 from helpers.order_helper import OrderHelper
 from data.courier_generator import CourierGenerator
 from data.order_generator import OrderGenerator
+from data.order_test_data import STATUS_CREATED, FIELD_TRACK
 
 
 @pytest.fixture
@@ -57,10 +58,10 @@ def created_order():
 
     with allure.step('Создать заказ'):
         response = OrderHelper.create_order(order_data)
-        if response.status_code == 201:
-            track_number = response.json().get('track')
+        if response.status_code == STATUS_CREATED:
+            track_number = response.json().get(FIELD_TRACK)
 
-    yield {'order_data': order_data, 'track': track_number}
+    yield {'order_data': order_data, 'track': track_number, 'response': response}
 
     if track_number:
         with allure.step(f'Отменить заказ (track={track_number})'):
